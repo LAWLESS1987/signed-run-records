@@ -1,0 +1,7 @@
+signed-RUN reproduction packet v2.1 -- covenant 9d85f6c902bcfab4616be0d3b08d0715584f7a07
+python 3.12.10 on Windows-11-10.0.26200-SP0; flask 3.1.3, werkzeug 3.1.8, cryptography 43.0.3
+run_packet.py sha256 ec794ce6e71f1262c3c0dce28c35b6ae09a784f6bb314e4dd5fb10c2b4e5431a; expected.json sha256 6cd5960bdc87c4ca0fdbdf42bad326da5b0befd61e16c39174533067d59c4538
+SOURCE CHECK FAILED: cannot read covenant_daily_plan.py in C:\Users\<user>\<temp>\scratchpad\v21run3\empty (FileNotFoundError); pass the folder that holds covenant_unified_v8.py
+
+RESULT: COULD NOT RUN; 0.1 s; exit 2
+record: C:\Users\<user>\<temp>\scratchpad\v21run3\out_empty

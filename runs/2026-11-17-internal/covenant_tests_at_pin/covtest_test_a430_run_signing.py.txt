@@ -1,0 +1,15 @@
+semantic judge available: model 41bba7d7d753 (provider 'semantic'; add it to COVENANT_JUDGE_PROVIDERS to use it)
+ok   helper_adds_hash_before_signing
+ok   helper_keeps_ordinary_requests
+ok   helper_validates_explicit_hash
+ok   helper_signs_existing_payload_hash
+ok   helper_validates_existing_payload_hash
+ok   helper_refuses_conflicting_hashes
+ok   helper_accepts_matching_hashes
+ok   helper_does_not_modify_callers_payload
+ok   helper_keeps_method_and_path_bound
+ok   existing_raw_signer_covers_hash_bytes
+ok   mycelium_accepts_signed_hash_and_rejects_tampering
+ok   spore_forwards_exact_signed_hash_bytes
+ok   spore_refuses_hash_changed_after_signing
+A430S: 13/13 passed

@@ -1,0 +1,37 @@
++ git clone -q https://gist.github.com/79d125f515a2a90556acbde557ae9c57.git packet
++ git -C packet log -1 --format=%H
+4a694abf82ca88db554f9e367e2e971c2889b1c2
++ sha256sum packet/run_packet.py packet/expected.json
+e348f5ecc3c20056037f71a4c97f40fc17f5534ffdf32c246b7dcfee7e14b525  packet/run_packet.py
+6cd5960bdc87c4ca0fdbdf42bad326da5b0befd61e16c39174533067d59c4538  packet/expected.json
++ python3 -m venv venv
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.14-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/<user>/outsider_route_linux_1/venv/bin/python3
+
++ venv/bin/python -m pip install -q flask cryptography
+/home/<user>/outsider_route_linux_1/venv/bin/python: No module named pip
++ venv/bin/python -m pip list
++ grep -i -E '^(flask|werkzeug|cryptography) '
++ git clone -q https://github.com/LAWLESS1987/covenant covenant
++ cd packet
++ ../venv/bin/python run_packet.py --covenant ../covenant --out ../out
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.prefix, expected /home/<user>/outsider_route_linux_1/venv, got /home/<user>/outsider_route_linux_1/packet/../venv
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /home/<user>/outsider_route_linux_1/venv, got /home/<user>/outsider_route_linux_1/packet/../venv
+signed-RUN reproduction packet v2.2 -- covenant 9d85f6c902bcfab4616be0d3b08d0715584f7a07
+python 3.14.4 on Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43; flask None, werkzeug None, cryptography None
+run_packet.py sha256 e348f5ecc3c20056037f71a4c97f40fc17f5534ffdf32c246b7dcfee7e14b525; expected.json sha256 6cd5960bdc87c4ca0fdbdf42bad326da5b0befd61e16c39174533067d59c4538
+missing package(s): flask, cryptography -- install them into THIS interpreter: /home/<user>/outsider_route_linux_1/packet/../venv/bin/python -m pip install flask cryptography
+
+RESULT: COULD NOT RUN; 0.0 s; exit 2
+record: /home/<user>/outsider_route_linux_1/out
++ echo 'EXIT 2'
+EXIT 2
++ set +x

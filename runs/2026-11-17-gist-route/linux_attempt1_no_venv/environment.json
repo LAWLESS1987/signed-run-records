@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/home/<user>/outsider_route_linux_1/packet/../venv/bin/python",
+    "run_packet.py",
+    "--covenant",
+    "../covenant",
+    "--out",
+    "../out"
+  ],
+  "covenant_commit": "9d85f6c902bcfab4616be0d3b08d0715584f7a07",
+  "covenant_repo": "https://github.com/LAWLESS1987/covenant",
+  "cryptography": null,
+  "cwd": "/home/<user>/outsider_route_linux_1/packet",
+  "exit_code": 2,
+  "expected_json_sha256": "6cd5960bdc87c4ca0fdbdf42bad326da5b0befd61e16c39174533067d59c4538",
+  "flask": null,
+  "git": "git version 2.53.0",
+  "machine": "x86_64",
+  "packet_version": "v2.2",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "python_executable": "/home/<user>/outsider_route_linux_1/packet/../venv/bin/python",
+  "run_packet_sha256": "e348f5ecc3c20056037f71a4c97f40fc17f5534ffdf32c246b7dcfee7e14b525",
+  "seconds": 0.02,
+  "started_utc": "2026-11-17T18:22:17Z",
+  "werkzeug": null
+}

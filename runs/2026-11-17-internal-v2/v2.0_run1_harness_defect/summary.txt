@@ -1,0 +1,204 @@
+signed-RUN reproduction packet v2 -- covenant 9d85f6c902bcfab4616be0d3b08d0715584f7a07
+python 3.12.10 on Windows-11-10.0.26200-SP0; flask 3.1.3, werkzeug 3.1.8, cryptography 43.0.3
+run_packet.py sha256 90c2e1565dd2d340fb6551f0f429820fb2ac5353e3f854defc91831d6c144f1d; expected.json sha256 6cd5960bdc87c4ca0fdbdf42bad326da5b0befd61e16c39174533067d59c4538
+source: git object store of C:\Users\<user>\<temp>\scratchpad\v2run1\cov (git cat-file blob 9d85f6c902bc:FILE); the working tree was not read; all 8 files match their pinned blob hashes
+temporary folder: C:\Users\<user>\AppData\Local\Temp\signed_run_packet_0u5agtrx
+
+variant pinned               NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant always_refuse        AS PRE-REGISTERED
+  1_signed_no_args                ok    NOTHING          reads=1 launches=0 args=-
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    NOTHING          reads=1 launches=0 args=-
+  5b_swap_continuous              ok    NOTHING          reads=1 launches=0 args=-
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    NOTHING          reads=1 launches=0 args=-
+
+variant accept_everything    NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    RAN_CHANGED      reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  2b_one_byte_added               ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  3_added_args                    DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected ['--extra', '1']
+  3b_one_argument                 DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected ['x']
+  4_unsigned_loopback             ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  4b_unsigned_tailnet             ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_SUBSTITUTE; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_SUBSTITUTE/LAUNCH_NO_MARKER; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  7_bad_signature_registered_key  ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  8_unregistered_key              ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  9_signed_without_hash           ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant no_signature_check   NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  4b_unsigned_tailnet             ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  7_bad_signature_registered_key  ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  8_unregistered_key              ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant no_hash_check        NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    RAN_CHANGED      reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  2b_one_byte_added               ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant no_args_check        NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected ['--extra', '1']
+  3b_one_argument                 DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected ['x']
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant child_reopens        NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_SUBSTITUTE; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_SUBSTITUTE/LAUNCH_NO_MARKER; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant extra_parent_read    NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=2 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=2 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=2 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=2 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant no_body_digest       NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant no_signature_verify  NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  7_bad_signature_registered_key  ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+
+variant no_registry_check    NOT AS PRE-REGISTERED
+  1_signed_no_args                DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  5b_swap_continuous              DIFF  INCONCLUSIVE     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- outcome INCONCLUSIVE, expected RAN_APPROVED; child arguments ['<unrecognized launch>', 'None'], expected []
+      inconclusive: a launch with no swap confirmed before it
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       DIFF  RAN_APPROVED     reads=1 launches=1 args=['<unrecognized launch>', 'None']  <- child arguments ['<unrecognized launch>', 'None'], expected []
+removed the temporary folder
+
+RESULT: INCONCLUSIVE -- a fixture did not do its part; 1 of 11 variants as pre-registered; 22.0 s; exit 3
+record: C:\Users\<user>\<temp>\scratchpad\v2run1\out

@@ -1,0 +1,4 @@
+signed-RUN reproduction packet v1 -- covenant 9d85f6c902bcfab4616be0d3b08d0715584f7a07
+python 3.12.10 on Windows-11-10.0.26200-SP0; flask 3.1.3, werkzeug 3.1.8, cryptography 43.0.3
+expected.json sha256 b7614f3cf4414e0626b2dfe652fb4fbf9137cb0e6656f55f9dbc5e981eef7f74
+SOURCE CHECK FAILED: these files do not match commit 9d85f6c902bcfab4616be0d3b08d0715584f7a07: {"covenant_tetsu_hands.py": "3b7843eac2a45ffec5eaeae82ff523e476a96e6d"} (a CRLF checkout of a zip changes the bytes; use a clone, or a zip with LF endings)

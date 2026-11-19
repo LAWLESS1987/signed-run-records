@@ -1,0 +1,34 @@
+ok    TH1.1 the first line is the directive: WRITE with its body, RUN with its args, and a plain answer is none
+ok    TH1.2 a name that climbs, is absolute, is empty, is too long or carries odd characters is refused; a plain relative name resolves inside the workshop
+ok    TH1.3 a WRITE under a HELD gate lands in his workshop and says the gate held; READ hands the content back as data; LIST names the file; a file over the cap is refused
+ok    TH1.4 the static screen refuses the network, other processes, dynamic import, exec, escaping paths and the class ladder, each with its reason, and admits a plain script
+ok    TH1.4c re.compile on a name `import re` alone binds is admitted and runs; the builtin compile, exec and eval, .compile on another module or a rebound or shadowed name or as a store, and every other forbidden attribute are still refused
+ok    TH1.4d an allowed module cannot be used to reach a forbidden one (uuid.os, pprint._sys, enum.sys): the attribute is refused by the screen, a HANDS RUN of it never starts, and the allowed module itself still works
+ok    TH1.4e `from uuid import os` is refused (the import-name close) while a safe star import still passes, and act() gates RUN on may_run: a non-operator caller cannot run a script, an operator/in-process caller can
+ok    TH1.4b a write that replaces his file keeps its earlier version beside the workshop (outside his space)
+ok    TH1.5 a clean script runs in his workshop: its output comes back as data, it may write a file inside the workshop, and the run is recorded with imports and ms
+ok    TH1.6 a computed path that climbs out of the workshop is stopped by the run-time guard (PermissionError), and nothing is written outside
+ok    TH1.7 a run that never ends is killed at the clock and says so; output is capped and marked truncated
+ok    TH1.8 a script the screen refuses never starts (no process, the reason returned); a non-Python file does not run
+ok    TH1.9 a VIOLATES refuses a write and a run with the seat's words and nothing is done; a gate that cannot be built refuses; a HELD does not refuse a run in his own workshop
+ok    TH1.10 the gate reads the ACT (kind, name, size, bounds), never the file's content
+ok    TH1.11 a proposal is saved under the proposals folder with its record, the tree file is untouched, the operator is told with the apply command, a non-compiling Python proposal is recorded as such, a path outside the tree or an empty body is refused
+ok    TH1.11b a PROPOSE the gate calls VIOLATES is recorded, not dropped: saved with the verdict in its record and its row, the operator told the proposal and the verdict, Tetsu told the gate's words, the tree untouched; the verdict rides every proposal's line; a WRITE under VIOLATES is still refused
+ok    TH1.12 --apply copies the proposal over the tree file it names, prints the diff, and records the act with actor operator
+ok    TH1.12f the proposals listing reads only records: a .json proposal whose body is an array, not strict JSON, or carries an id of its own is listed once by its record, a record cut short or not an object is skipped, and --apply, --proposals and --proposal work for every other proposal
+ok    TH1.13 every act is one row (kind, target, gate, outcome) with actor tetsu; a plain answer is not handled (False, '', None) as the MOLTBOOK door expects
+      (his instructions tell him he has hands)
+ok    TH1.14 the /m/agent door dispatches a HANDS first line to covenant_tetsu_hands.act beside MOLTBOOK, and gates RUN to a caller with a registered operator signature (may_run from _request_signed_by_registered, NOT mere loopback, which is any local account)
+ok    TH1.15 a run hands Python SYSTEMDRIVE, and leaves nothing in the workshop but the script (no runner since A430, no '%SystemDrive%' tree)
+ok    TH1.22 AS SHIPPED (A429) the content is shown to the content seat: JUDGE_SEES_CONTENT is True, and the shared gate is given exactly main's one sentence for a WRITE and for a RUN, none of the content
+ok    TH1.10b the shared gate reads the ACT in one sentence and never the text; the content seat reads a .py WRITE's whole text and abstains, and the prose seat abstains on body10 (no marker), and both writes land
+ok    TH1.16 for a RUN the content seat reads the script's whole source from the workshop file and abstains on code the screen passes (it never says clean); the shared gate reads the one sentence; the script runs
+ok    TH1.16b ...and never from outside it: a script named by a path that climbs is not read, a file reached through a link that leads out of the workshop is not opened; the content seat abstains and says why
+ok    TH1.17 the content seat reads the content whole (12038 characters, past GATE_TEXT_MAX 2000): a refused import at its end is found at the WRITE and at the RUN, each refused before anything is written or started; the shared gate's sentence carries none of the content
+semantic judge available: model 41bba7d7d753 (provider 'semantic'; add it to COVENANT_JUDGE_PROVIDERS to use it)
+ok    TH1.18 nobody judged and judged-and-unsure are two states, told apart by the flags on the sentinel's own result (14 cases through the real _gate and the core's own classes): not_understood -> not_judged, uncertain -> held, neither -> violates; the message's words do not decide; a gate that cannot be built is unreachable; and the bounded text reaches the seats whole
+ok    TH1.19 a WRITE under a HELD gate and under a NOT-JUDGED gate lands in his workshop (A226), says which it was, records each state as itself and carries unjudged: true in its row; a clean WRITE carries no mark; a VIOLATES, an unreachable gate and a file over the cap are refused and carry none
+ok    TH1.20 PINNED, as on main: a RUN under a hold or under not-judged starts only with the operator's authority (may_run, A423) and is refused without it; a clean RUN the same; VIOLATES and an unreachable gate refuse it before may_run is read; a caller that passes no may_run (his practice loop) runs under a hold; 4 starts in 11 asks
+ok    TH1.20b a RUN that started under a hold or under not-judged carries unjudged: true; a clean RUN, a RUN refused for want of the operator, and a RUN the screen stopped before it started carry none; a PROPOSE recorded under a hold or not-judged carries it (and tells the operator NOT JUDGED in words), under clean or VIOLATES it does not
+ok    TH1.21 the acts carried out without a judgement can be listed, read-only: unjudged() returns exactly the marked rows, oldest first, as written; a row of before A428 (a held gate, a write that landed, no mark) is not among them and is counted apart, and a held RUN the screen stopped is in neither; `--unjudged` prints the same rows and says how many earlier ones there are; the ledger is not written
+TH1: 31/31 passed

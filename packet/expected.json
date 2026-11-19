@@ -1,0 +1,121 @@
+{
+  "what": "Pre-registered outcomes for the signed-RUN reproduction packet (collective issue #21), written and committed before any run of run_packet.py.",
+  "packet_version": "v1",
+  "covenant_commit": "9d85f6c902bcfab4616be0d3b08d0715584f7a07",
+  "how_a_case_is_judged": "Only by execution evidence: which marker files the scripts wrote inside the case's temporary workshop, and how many child processes the hands started (audit hook on subprocess.Popen). The verdict text and the ledger row are recorded for reading but never decide a case.",
+  "cases": {
+    "1_signed_no_args": {
+      "setup": "workshop/probe.py holds APPROVED bytes; the request body {\"run_sha256\": sha256(APPROVED)} is signed with a throwaway key that is registered; the model's answer is 'HANDS RUN probe.py'.",
+      "pass_if": "the APPROVED script ran (ran_approved.txt exists and says 'approved'), no other marker exists, and exactly 1 child process was started.",
+      "must_ran": [
+        "approved"
+      ],
+      "must_not_ran": [
+        "changed",
+        "substitute"
+      ],
+      "child_processes": 1
+    },
+    "2_changed_bytes": {
+      "setup": "workshop/probe.py holds CHANGED bytes; the signed body carries sha256(APPROVED); answer 'HANDS RUN probe.py'.",
+      "pass_if": "nothing ran (no marker file) and 0 child processes were started.",
+      "must_ran": [],
+      "must_not_ran": [
+        "approved",
+        "changed",
+        "substitute"
+      ],
+      "child_processes": 0
+    },
+    "3_added_args": {
+      "setup": "workshop/probe.py holds APPROVED bytes; the signed body carries sha256(APPROVED); the model's answer is 'HANDS RUN probe.py --extra 1' (arguments the operator never signed).",
+      "pass_if": "nothing ran and 0 child processes were started.",
+      "must_ran": [],
+      "must_not_ran": [
+        "approved",
+        "changed",
+        "substitute"
+      ],
+      "child_processes": 0
+    },
+    "4_unsigned": {
+      "setup": "workshop/probe.py holds APPROVED bytes; the body {\"run_sha256\": sha256(APPROVED)} is sent with NO signature headers; answer 'HANDS RUN probe.py'.",
+      "pass_if": "nothing ran and 0 child processes were started.",
+      "must_ran": [],
+      "must_not_ran": [
+        "approved",
+        "changed",
+        "substitute"
+      ],
+      "child_processes": 0
+    },
+    "5a_swap_at_launch": {
+      "setup": "as case 1, but the moment the hands call subprocess.run to start the child (after the hash check and the screen), the harness overwrites workshop/probe.py with SUBSTITUTE bytes, then lets the launch go ahead.",
+      "pass_if": "the SUBSTITUTE script did not run, and EITHER the APPROVED script ran in exactly 1 child and the swap is confirmed to have happened (probe.py on disk is SUBSTITUTE afterwards) OR nothing ran and no child started (then the launch point the swap is tied to never came, which the claim allows: 'only the signed bytes run, or nothing does').",
+      "must_not_ran": [
+        "substitute",
+        "changed"
+      ],
+      "swap_must_occur": "when a child was started",
+      "pinned_expected_detail": "approved_ran"
+    },
+    "5b_swap_continuous": {
+      "setup": "as case 1, but from the moment the gate is asked (after the hands read the file, before the hash check) until the act returns, a thread keeps replacing workshop/probe.py with SUBSTITUTE bytes.",
+      "pass_if": "same as 5a.",
+      "must_not_ran": [
+        "substitute",
+        "changed"
+      ],
+      "swap_must_occur": "when a child was started",
+      "pinned_expected_detail": "approved_ran"
+    }
+  },
+  "variants": {
+    "pinned": {
+      "what": "the covenant files exactly as they are at the pinned commit (git blob hashes checked).",
+      "must_fail": []
+    },
+    "always_refuse": {
+      "what": "_binding_refusal always returns a refusal: a version that refuses every signed run.",
+      "must_fail": [
+        "1_signed_no_args"
+      ]
+    },
+    "accept_everything": {
+      "what": "all four guards removed at once: the door treats every request as signed, the hash check returns no refusal, the A436 argument check never fires, and the child reopens the file by name (the pre-A430 runner).",
+      "must_fail": [
+        "2_changed_bytes",
+        "3_added_args",
+        "4_unsigned",
+        "5a_swap_at_launch",
+        "5b_swap_continuous"
+      ]
+    },
+    "no_signature_check": {
+      "what": "only the door's signature check removed (_may_run = True).",
+      "must_fail": [
+        "4_unsigned"
+      ]
+    },
+    "no_hash_check": {
+      "what": "only the run_sha256 comparison removed (_binding_refusal returns None).",
+      "must_fail": [
+        "2_changed_bytes"
+      ]
+    },
+    "no_args_check": {
+      "what": "only the A436 argument refusal removed.",
+      "must_fail": [
+        "3_added_args"
+      ]
+    },
+    "child_reopens": {
+      "what": "only the read-once property removed: the child opens the script by name instead of reading the bytes the parent hashed from its standard input.",
+      "must_fail": [
+        "5a_swap_at_launch",
+        "5b_swap_continuous"
+      ]
+    }
+  },
+  "variant_rule": "A variant meets its pre-registration when the set of cases it fails is EXACTLY its must_fail list: every listed case fails and every other case passes. The run's exit code is 0 only when all seven variants meet theirs."
+}

@@ -1,0 +1,186 @@
+signed-RUN reproduction packet v2.2 -- covenant 9d85f6c902bcfab4616be0d3b08d0715584f7a07
+python 3.14.4 on Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43; flask 3.1.3, werkzeug 3.1.8, cryptography 46.0.5
+run_packet.py sha256 e348f5ecc3c20056037f71a4c97f40fc17f5534ffdf32c246b7dcfee7e14b525; expected.json sha256 6cd5960bdc87c4ca0fdbdf42bad326da5b0befd61e16c39174533067d59c4538
+source: git object store of /home/<user>/signed_run_packet_v22_run2/cov (git cat-file blob 9d85f6c902bc:FILE); the working tree was not read; all 8 files match their pinned blob hashes
+temporary folder: /tmp/signed_run_packet_z_kz2rpz
+
+variant pinned               AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant always_refuse        AS PRE-REGISTERED
+  1_signed_no_args                ok    NOTHING          reads=1 launches=0 args=-
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    NOTHING          reads=1 launches=0 args=-
+  5b_swap_continuous              ok    NOTHING          reads=1 launches=0 args=-
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    NOTHING          reads=1 launches=0 args=-
+
+variant accept_everything    AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    RAN_CHANGED      reads=1 launches=1 args=[]
+  2b_one_byte_added               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  3_added_args                    ok    RAN_APPROVED     reads=1 launches=1 args=['--extra', '1']
+  3b_one_argument                 ok    RAN_APPROVED     reads=1 launches=1 args=['x']
+  4_unsigned_loopback             ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  4b_unsigned_tailnet             ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5a_swap_at_launch               ok    RAN_SUBSTITUTE   reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_SUBSTITUTE   reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  7_bad_signature_registered_key  ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  8_unregistered_key              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  9_signed_without_hash           ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant no_signature_check   AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  4b_unsigned_tailnet             ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  7_bad_signature_registered_key  ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  8_unregistered_key              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant no_hash_check        AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    RAN_CHANGED      reads=1 launches=1 args=[]
+  2b_one_byte_added               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant no_args_check        AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    RAN_APPROVED     reads=1 launches=1 args=['--extra', '1']
+  3b_one_argument                 ok    RAN_APPROVED     reads=1 launches=1 args=['x']
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant child_reopens        AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_SUBSTITUTE   reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_SUBSTITUTE   reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant extra_parent_read    AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=2 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=2 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=2 launches=1 args=[]
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=2 launches=1 args=[]
+
+variant no_body_digest       AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant no_signature_verify  AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  7_bad_signature_registered_key  ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  8_unregistered_key              ok    NOTHING          reads=1 launches=0 args=-
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+
+variant no_registry_check    AS PRE-REGISTERED
+  1_signed_no_args                ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  2_changed_bytes                 ok    NOTHING          reads=1 launches=0 args=-
+  2b_one_byte_added               ok    NOTHING          reads=1 launches=0 args=-
+  3_added_args                    ok    NOTHING          reads=1 launches=0 args=-
+  3b_one_argument                 ok    NOTHING          reads=1 launches=0 args=-
+  4_unsigned_loopback             ok    NOTHING          reads=1 launches=0 args=-
+  4b_unsigned_tailnet             ok    NOTHING          reads=1 launches=0 args=-
+  5a_swap_at_launch               ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  5b_swap_continuous              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  6_body_changed_after_signing    ok    NOTHING          reads=1 launches=0 args=-
+  7_bad_signature_registered_key  ok    NOTHING          reads=1 launches=0 args=-
+  8_unregistered_key              ok    RAN_APPROVED     reads=1 launches=1 args=[]
+  9_signed_without_hash           ok    NOTHING          reads=1 launches=0 args=-
+  C1_ally_key_default_scope       ok    RAN_APPROVED     reads=1 launches=1 args=[]
+removed the temporary folder
+
+RESULT: ALL AS PRE-REGISTERED -- 11 of 11 variants; 8.6 s; exit 0
+record: /home/<user>/signed_run_packet_v22_run2/out
+EXIT 0

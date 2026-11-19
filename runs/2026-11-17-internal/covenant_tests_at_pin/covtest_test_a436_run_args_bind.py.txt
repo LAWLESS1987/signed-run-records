@@ -1,0 +1,12 @@
+test_plain_in_process_caller_with_args_is_untouched (__main__.RunArgsBind.test_plain_in_process_caller_with_args_is_untouched) ... semantic judge available: model 41bba7d7d753 (provider 'semantic'; add it to COVENANT_JUDGE_PROVIDERS to use it)
+ok
+test_practice_path_with_args_is_untouched (__main__.RunArgsBind.test_practice_path_with_args_is_untouched) ... ok
+test_signed_door_run_with_args_is_refused (__main__.RunArgsBind.test_signed_door_run_with_args_is_refused) ... ok
+test_signed_door_run_without_args_is_not_refused_by_a436 (__main__.RunArgsBind.test_signed_door_run_without_args_is_not_refused_by_a436) ... ok
+test_unsigned_run_is_refused_by_a423_first_not_a436 (__main__.RunArgsBind.test_unsigned_run_is_refused_by_a423_first_not_a436) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.622s
+
+OK
+A436: 5/5 passed

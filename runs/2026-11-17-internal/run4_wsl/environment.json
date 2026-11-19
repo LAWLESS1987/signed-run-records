@@ -1,0 +1,27 @@
+{
+  "packet_version": "v1",
+  "covenant_commit": "9d85f6c902bcfab4616be0d3b08d0715584f7a07",
+  "covenant_repo": "https://github.com/LAWLESS1987/covenant",
+  "run_packet_sha256": "07f063601bc501ae319a77994f8d369108a7ba6e137aa2d60c73da8cdb6ce935",
+  "expected_json_sha256": "b7614f3cf4414e0626b2dfe652fb4fbf9137cb0e6656f55f9dbc5e981eef7f74",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "python_executable": "/usr/bin/python3",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "machine": "x86_64",
+  "flask": "3.1.3",
+  "werkzeug": "3.1.8",
+  "cryptography": "46.0.5",
+  "git": "git version 2.53.0",
+  "command": [
+    "/usr/bin/python3",
+    "packet/run_packet.py",
+    "--covenant",
+    "cov",
+    "--out",
+    "out"
+  ],
+  "cwd": "/home/<user>/signed_run_packet_run4",
+  "started_utc": "2026-11-17T17:05:39Z",
+  "source": "git object database of /home/<user>/signed_run_packet_run4/cov (git cat-file blob 9d85f6c902bc:FILE); the working tree was not read",
+  "seconds": 4.65
+}

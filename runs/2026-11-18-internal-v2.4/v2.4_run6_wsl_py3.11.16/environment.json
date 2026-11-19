@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/home/<user>/v24py/venv-3.11.16/bin/python",
+    "run_packet.py",
+    "--covenant",
+    "/home/<user>/v24/cov",
+    "--out",
+    "/home/<user>/v24py/out_3.11.16"
+  ],
+  "covenant_commit": "ead187b2513fba7bce1404cf3678ae128f38b1b8",
+  "covenant_repo": "https://github.com/LAWLESS1987/covenant",
+  "cryptography": "50.0.2",
+  "cwd": "/home/<user>/v24py/pkt",
+  "exit_code": 0,
+  "expected_json_sha256": "b5ff2c272e062d872339bd37b47bb3ceb6da66bf6f416d991f1925086aca1ecb",
+  "flask": "3.1.3",
+  "git": "git version 2.53.0",
+  "machine": "x86_64",
+  "packet_version": "v2.4",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.11.16 (main, Aug 25 2026, 14:00:53) [Clang 22.1.3 ]",
+  "python_executable": "/home/<user>/v24py/venv-3.11.16/bin/python",
+  "run_packet_sha256": "380e91f204b7fb01886b6936652e7eec35031bc40c931c47d2dc85c796c9ea62",
+  "seconds": 9.23,
+  "source": "plain folder /home/<user>/v24/cov (files read and checked against the pinned blob hashes)",
+  "started_utc": "2026-11-19T03:32:11Z",
+  "werkzeug": "3.1.9"
+}

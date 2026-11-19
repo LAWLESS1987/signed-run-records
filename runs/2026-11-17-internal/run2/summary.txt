@@ -1,0 +1,67 @@
+signed-RUN reproduction packet v1 -- covenant 9d85f6c902bcfab4616be0d3b08d0715584f7a07
+python 3.12.10 on Windows-11-10.0.26200-SP0; flask 3.1.3, werkzeug 3.1.8, cryptography 43.0.3
+expected.json sha256 b7614f3cf4414e0626b2dfe652fb4fbf9137cb0e6656f55f9dbc5e981eef7f74
+source: git object database of C:\Users\<user>\<temp>\scratchpad\run2\cov (git cat-file blob 9d85f6c902bc:FILE); the working tree was not read; all 8 files match their pinned blob hashes
+temporary folder: C:\Users\<user>\AppData\Local\Temp\signed_run_packet_d1nf93rv
+
+variant pinned              AS PRE-REGISTERED  (fails none; pre-registered to fail none)
+  1_signed_no_args     pass  ran | markers=['approved'] children=1 disk_after=approved
+  2_changed_bytes      pass  refused: nothing ran, no child started | markers=none children=0 disk_after=changed
+  3_added_args         pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  4_unsigned           pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  5a_swap_at_launch    pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+  5b_swap_continuous   pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+  5a_swap_at_launch on the pinned code: approved_ran (pre-registered: approved_ran)
+  5b_swap_continuous on the pinned code: approved_ran (pre-registered: approved_ran)
+
+variant always_refuse       AS PRE-REGISTERED  (fails ['1_signed_no_args']; pre-registered to fail ['1_signed_no_args'])
+  1_signed_no_args     FAIL  did not run: approved | markers=none children=0 disk_after=approved
+  2_changed_bytes      pass  refused: nothing ran, no child started | markers=none children=0 disk_after=changed
+  3_added_args         pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  4_unsigned           pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  5a_swap_at_launch    pass  nothing ran and no child started | markers=none children=0 disk_after=approved
+  5b_swap_continuous   pass  nothing ran and no child started | markers=none children=0 disk_after=substitute
+
+variant accept_everything   AS PRE-REGISTERED  (fails ['2_changed_bytes', '3_added_args', '4_unsigned', '5a_swap_at_launch', '5b_swap_continuous']; pre-registered to fail ['2_changed_bytes', '3_added_args', '4_unsigned', '5a_swap_at_launch', '5b_swap_continuous'])
+  1_signed_no_args     pass  ran | markers=['approved'] children=1 disk_after=approved
+  2_changed_bytes      FAIL  ran: changed | markers=['changed'] children=1 disk_after=changed
+  3_added_args         FAIL  ran: approved | markers=['approved'] children=1 disk_after=approved
+  4_unsigned           FAIL  ran: approved | markers=['approved'] children=1 disk_after=approved
+  5a_swap_at_launch    FAIL  ran: substitute | markers=['substitute'] children=1 disk_after=substitute
+  5b_swap_continuous   FAIL  ran: substitute | markers=['substitute'] children=1 disk_after=substitute
+
+variant no_signature_check  AS PRE-REGISTERED  (fails ['4_unsigned']; pre-registered to fail ['4_unsigned'])
+  1_signed_no_args     pass  ran | markers=['approved'] children=1 disk_after=approved
+  2_changed_bytes      pass  refused: nothing ran, no child started | markers=none children=0 disk_after=changed
+  3_added_args         pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  4_unsigned           FAIL  ran: approved | markers=['approved'] children=1 disk_after=approved
+  5a_swap_at_launch    pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+  5b_swap_continuous   pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+
+variant no_hash_check       AS PRE-REGISTERED  (fails ['2_changed_bytes']; pre-registered to fail ['2_changed_bytes'])
+  1_signed_no_args     pass  ran | markers=['approved'] children=1 disk_after=approved
+  2_changed_bytes      FAIL  ran: changed | markers=['changed'] children=1 disk_after=changed
+  3_added_args         pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  4_unsigned           pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  5a_swap_at_launch    pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+  5b_swap_continuous   pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+
+variant no_args_check       AS PRE-REGISTERED  (fails ['3_added_args']; pre-registered to fail ['3_added_args'])
+  1_signed_no_args     pass  ran | markers=['approved'] children=1 disk_after=approved
+  2_changed_bytes      pass  refused: nothing ran, no child started | markers=none children=0 disk_after=changed
+  3_added_args         FAIL  ran: approved | markers=['approved'] children=1 disk_after=approved
+  4_unsigned           pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  5a_swap_at_launch    pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+  5b_swap_continuous   pass  approved ran in 1 child; the file on disk had been swapped | markers=['approved'] children=1 disk_after=substitute
+
+variant child_reopens       AS PRE-REGISTERED  (fails ['5a_swap_at_launch', '5b_swap_continuous']; pre-registered to fail ['5a_swap_at_launch', '5b_swap_continuous'])
+  1_signed_no_args     pass  ran | markers=['approved'] children=1 disk_after=approved
+  2_changed_bytes      pass  refused: nothing ran, no child started | markers=none children=0 disk_after=changed
+  3_added_args         pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  4_unsigned           pass  refused: nothing ran, no child started | markers=none children=0 disk_after=approved
+  5a_swap_at_launch    FAIL  ran: substitute | markers=['substitute'] children=1 disk_after=substitute
+  5b_swap_continuous   FAIL  ran: substitute | markers=['substitute'] children=1 disk_after=substitute
+removed the temporary folder
+
+RESULT: ALL AS PRE-REGISTERED -- 7 of 7 variants as pre-registered; 11.4 s; exit 0
+record: C:\Users\<user>\<temp>\scratchpad\run2\out

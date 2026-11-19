@@ -1,0 +1,28 @@
+{
+  "command": [
+    "C:\\Users\\<user>\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+    "run_packet.py",
+    "--covenant",
+    "C:/Users/<user>/covenant",
+    "--out",
+    "C:/Users/<user>/mbc-issue21/reviews/signed-run-packet-2026-11-17/runs/2026-11-18-internal-v2.4/v2.4_run4"
+  ],
+  "covenant_commit": "ead187b2513fba7bce1404cf3678ae128f38b1b8",
+  "covenant_repo": "https://github.com/LAWLESS1987/covenant",
+  "cryptography": "43.0.3",
+  "cwd": "C:\\Users\\<user>\\<temp>\\scratchpad\\v24_clean_win4",
+  "exit_code": 0,
+  "expected_json_sha256": "c6e0cf906f3a22c96a629400144fa1bed2bc94ea3e5738ec7340fbd7cc8aede4",
+  "flask": "3.1.3",
+  "git": "git version 2.55.0.windows.5",
+  "machine": "AMD64",
+  "packet_version": "v2.4",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\<user>\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+  "run_packet_sha256": "a694ccc3cc9775cf73ccbdf1f81948084cce5279876b9ba391a92466b3ccdb09",
+  "seconds": 25.82,
+  "source": "git object store of C:\\Users\\<user>\\covenant (git cat-file blob ead187b2513f:FILE); the working tree was not read",
+  "started_utc": "2026-11-18T20:13:32Z",
+  "werkzeug": "3.1.8"
+}

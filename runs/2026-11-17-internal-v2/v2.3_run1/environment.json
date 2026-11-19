@@ -1,0 +1,26 @@
+{
+  "command": [
+    "C:\\Users\\<user>\\covenant\\.venv\\Scripts\\python.exe",
+    "run_packet.py",
+    "--covenant",
+    "C:\\Users\\<user>\\AppData\\Local\\Temp\\pkt_v23_133801\\cov"
+  ],
+  "covenant_commit": "9d85f6c902bcfab4616be0d3b08d0715584f7a07",
+  "covenant_repo": "https://github.com/LAWLESS1987/covenant",
+  "cryptography": "50.0.0",
+  "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\pkt_v23_133801",
+  "exit_code": 0,
+  "expected_json_sha256": "192e14dd28cc1bea00318694e6273b30e426915e476b380ae214e021ce23d0d0",
+  "flask": "3.1.3",
+  "git": "git version 2.55.0.windows.5",
+  "machine": "AMD64",
+  "packet_version": "v2.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\<user>\\covenant\\.venv\\Scripts\\python.exe",
+  "run_packet_sha256": "848f3b8642e3e0e67989ecb43ba91e52f8b6ae5fa2481cb1e14b833efaed7310",
+  "seconds": 24.33,
+  "source": "plain folder C:\\Users\\<user>\\AppData\\Local\\Temp\\pkt_v23_133801\\cov (files read and checked against the pinned blob hashes)",
+  "started_utc": "2026-11-17T18:38:02Z",
+  "werkzeug": "3.1.8"
+}

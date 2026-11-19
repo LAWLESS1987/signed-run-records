@@ -1,0 +1,114 @@
+{
+  "what": "Pre-registered observations for the signed-RUN reproduction packet (collective issue #21). v2's were written and committed before any run of v2. v2.4's changes (C1 refused at the new pin; case 10_planted_json; variant no_isolation; no second read expected in C1 under extra_parent_read) were written and committed before any run of v2.4; the gist's history shows the order. v1 (../packet/) is kept as it was; v2 answers ChatGPT's review of v1 (../review/).",
+  "packet_version": "v2.4",
+  "covenant_commit": "ead187b2513fba7bce1404cf3678ae128f38b1b8",
+  "observations": {
+    "outcome": "What happened, from execution evidence only. RAN_APPROVED / RAN_CHANGED / RAN_SUBSTITUTE: exactly that script's marker file exists with the right content, after at least one launch attempt. NOTHING: no marker and no launch attempt. LAUNCH_NO_MARKER: a launch was attempted and no marker exists. INCONCLUSIVE: the fixture did not do its part (the harness raised, more than one marker, a marker with the wrong content, or in case 5 a launch with no swap confirmed before it).",
+    "reads": "How many times the parent process (the worker) opened workshop/probe.py while the door handled the request, counted by an audit hook on 'open'. The harness's own setup and its swaps are not counted: they happen outside that window, or write a temporary file and rename it over probe.py.",
+    "child_args": "For a launch: the arguments the child process was given after the script name, read from the launch call itself (audit event subprocess.Popen).",
+    "planted_loaded": "Case 10 only (v2.4): whether workshop/ran_planted.txt exists after the case, i.e. whether the launched child imported the planted workshop/json.py."
+  },
+  "pinned": {
+    "1_signed_no_args":            {"outcome": ["RAN_APPROVED"], "reads": 1, "child_args": []},
+    "2_changed_bytes":             {"outcome": ["NOTHING"], "reads": 1},
+    "2b_one_byte_added":           {"outcome": ["NOTHING"], "reads": 1},
+    "3_added_args":                {"outcome": ["NOTHING"], "reads": 1},
+    "3b_one_argument":             {"outcome": ["NOTHING"], "reads": 1},
+    "4_unsigned_loopback":         {"outcome": ["NOTHING"], "reads": 1},
+    "4b_unsigned_tailnet":         {"outcome": ["NOTHING"], "reads": 1},
+    "5a_swap_at_launch":           {"outcome": ["RAN_APPROVED"], "reads": 1, "child_args": []},
+    "5b_swap_continuous":          {"outcome": ["RAN_APPROVED"], "reads": 1, "child_args": []},
+    "6_body_changed_after_signing": {"outcome": ["NOTHING"], "reads": 1},
+    "7_bad_signature_registered_key": {"outcome": ["NOTHING"], "reads": 1},
+    "8_unregistered_key":          {"outcome": ["NOTHING"], "reads": 1},
+    "9_signed_without_hash":       {"outcome": ["NOTHING"], "reads": 1},
+    "10_planted_json":             {"outcome": ["RAN_APPROVED"], "reads": 1, "child_args": [], "planted_loaded": false},
+    "C1_ally_key_default_scope":   {"outcome": ["NOTHING"], "reads": 1}
+  },
+  "cases": {
+    "1_signed_no_args": "probe.py = APPROVED; body {run_sha256: sha256(APPROVED)} signed by the registered throwaway key; caller 127.0.0.1; answer 'HANDS RUN probe.py'.",
+    "2_changed_bytes": "as 1, but probe.py = CHANGED (a different script).",
+    "2b_one_byte_added": "as 1, but probe.py = APPROVED plus one trailing newline (a one-byte difference that would still run the approved marker).",
+    "3_added_args": "as 1, but the answer is 'HANDS RUN probe.py --extra 1'.",
+    "3b_one_argument": "as 1, but the answer is 'HANDS RUN probe.py x'.",
+    "4_unsigned_loopback": "as 1, but no signature headers; caller address set explicitly to 127.0.0.1.",
+    "4b_unsigned_tailnet": "as 4, from a tailnet address (100.127.255.254).",
+    "5a_swap_at_launch": "as 1; when the hands call subprocess.run to start the child (after the hash check and the screen), the harness replaces probe.py with SUBSTITUTE, confirms it, then lets the launch go ahead.",
+    "5b_swap_continuous": "as 1; when the gate is asked (after the single read, before the hash check) a thread starts replacing probe.py with SUBSTITUTE, the gate waits until the first replacement is confirmed, and the thread keeps replacing it until the act returns.",
+    "6_body_changed_after_signing": "the signature headers are made for the body {run_sha256: sha256(CHANGED)}, but the body sent is {run_sha256: sha256(APPROVED)}, which matches probe.py = APPROVED.",
+    "7_bad_signature_registered_key": "as 1, but X-Operator-Signature is a real signature by the registered key over a different body.",
+    "8_unregistered_key": "as 1, but signed (validly) by a second throwaway key that is not registered anywhere.",
+    "9_signed_without_hash": "probe.py = APPROVED; the signed body is {text: 'please run it'}, with no run_sha256.",
+    "10_planted_json": "v2.4 (capitaharlock, HF 191990 #2). probe.py = IMPORTS_JSON (imports json, then writes the approved marker); beside it, workshop/json.py = PLANTED_JSON, which writes ran_planted.txt if imported. The signed body carries sha256(IMPORTS_JSON). The child is launched with -I, so its working directory (the workshop) is not on sys.path and the planted file should not load.",
+    "C1_ally_key_default_scope": "CHARACTERIZATION, not part of the posted claim. As 1, but signed by a third throwaway key that is not an operator signer and IS registered as an ally (covenant_mycelium.register_ally, default scope, which includes /m/agent). At v2.3's pin (9d85f6c) it was pre-registered from reading the source as running, and ran. At v2.4's pin the door's may_run accepts only one of the operator's own signers (A447), so it is pre-registered as refused: nothing launched."
+  },
+  "variants": {
+    "pinned": {"what": "the nine files exactly as at the pinned commit (git blob hashes checked).", "overrides": {}},
+    "always_refuse": {
+      "what": "_binding_refusal always refuses.",
+      "overrides": {"1_signed_no_args": {"outcome": ["NOTHING"]}, "5a_swap_at_launch": {"outcome": ["NOTHING"]},
+                    "5b_swap_continuous": {"outcome": ["NOTHING"]}, "C1_ally_key_default_scope": {"outcome": ["NOTHING"]},
+                    "10_planted_json": {"outcome": ["NOTHING"]}}
+    },
+    "accept_everything": {
+      "what": "no_signature_check + no_hash_check + no_args_check + child_reopens.",
+      "overrides": {"2_changed_bytes": {"outcome": ["RAN_CHANGED"]}, "2b_one_byte_added": {"outcome": ["RAN_APPROVED"]},
+                    "3_added_args": {"outcome": ["RAN_APPROVED"], "child_args": ["--extra", "1"]},
+                    "3b_one_argument": {"outcome": ["RAN_APPROVED"], "child_args": ["x"]},
+                    "4_unsigned_loopback": {"outcome": ["RAN_APPROVED"]}, "4b_unsigned_tailnet": {"outcome": ["RAN_APPROVED"]},
+                    "5a_swap_at_launch": {"outcome": ["RAN_SUBSTITUTE"]},
+                    "5b_swap_continuous": {"outcome": ["RAN_SUBSTITUTE", "LAUNCH_NO_MARKER"]},
+                    "6_body_changed_after_signing": {"outcome": ["RAN_APPROVED"]},
+                    "7_bad_signature_registered_key": {"outcome": ["RAN_APPROVED"]},
+                    "8_unregistered_key": {"outcome": ["RAN_APPROVED"]}, "9_signed_without_hash": {"outcome": ["RAN_APPROVED"]},
+                    "C1_ally_key_default_scope": {"outcome": ["RAN_APPROVED"], "child_args": []}}
+    },
+    "no_signature_check": {
+      "what": "the door treats every request as signed (_may_run = True).",
+      "overrides": {"4_unsigned_loopback": {"outcome": ["RAN_APPROVED"]}, "4b_unsigned_tailnet": {"outcome": ["RAN_APPROVED"]},
+                    "6_body_changed_after_signing": {"outcome": ["RAN_APPROVED"]},
+                    "7_bad_signature_registered_key": {"outcome": ["RAN_APPROVED"]},
+                    "8_unregistered_key": {"outcome": ["RAN_APPROVED"]},
+                    "C1_ally_key_default_scope": {"outcome": ["RAN_APPROVED"], "child_args": []}}
+    },
+    "no_hash_check": {
+      "what": "_binding_refusal never refuses.",
+      "overrides": {"2_changed_bytes": {"outcome": ["RAN_CHANGED"]}, "2b_one_byte_added": {"outcome": ["RAN_APPROVED"]},
+                    "9_signed_without_hash": {"outcome": ["RAN_APPROVED"]}}
+    },
+    "no_args_check": {
+      "what": "the A436 argument refusal never fires.",
+      "overrides": {"3_added_args": {"outcome": ["RAN_APPROVED"], "child_args": ["--extra", "1"]},
+                    "3b_one_argument": {"outcome": ["RAN_APPROVED"], "child_args": ["x"]}}
+    },
+    "child_reopens": {
+      "what": "the child opens probe.py by name instead of reading the parent's bytes from standard input (the runner before A430).",
+      "overrides": {"5a_swap_at_launch": {"outcome": ["RAN_SUBSTITUTE"]},
+                    "5b_swap_continuous": {"outcome": ["RAN_SUBSTITUTE", "LAUNCH_NO_MARKER"]}}
+    },
+    "extra_parent_read": {
+      "what": "run() opens probe.py once more and discards what it read (just before the screen). Behaviour is unchanged; only the read count can show it.",
+      "overrides": {"1_signed_no_args": {"reads": 2}, "5a_swap_at_launch": {"reads": 2}, "5b_swap_continuous": {"reads": 2},
+                    "10_planted_json": {"reads": 2}}
+    },
+    "no_body_digest": {
+      "what": "the signed message stops covering the body (operator_signing_payload hashes an empty body whatever was sent).",
+      "overrides": {"6_body_changed_after_signing": {"outcome": ["RAN_APPROVED"]}}
+    },
+    "no_signature_verify": {
+      "what": "verify_operator_signature returns True without checking.",
+      "overrides": {"6_body_changed_after_signing": {"outcome": ["RAN_APPROVED"]},
+                    "7_bad_signature_registered_key": {"outcome": ["RAN_APPROVED"]}}
+    },
+    "no_registry_check": {
+      "what": "verify_signed admits a key that is not a registered signer.",
+      "overrides": {"8_unregistered_key": {"outcome": ["RAN_APPROVED"]},
+                    "C1_ally_key_default_scope": {"outcome": ["RAN_APPROVED"], "child_args": []}}
+    },
+    "no_isolation": {
+      "what": "v2.4, capitaharlock's control: the hands launch the child without -I, so the workshop (its working directory) is on sys.path and the planted json.py is imported.",
+      "overrides": {"10_planted_json": {"planted_loaded": true}}
+    }
+  },
+  "rule": "Each variant's expected observations are the pinned ones with its overrides applied (an override replaces only the fields it names). A variant meets its pre-registration when every case's observed outcome is one of the listed outcomes, its read count equals 'reads', where 'child_args' is given and a launch happened the child's arguments equal it, and where 'planted_loaded' is given it matches. Exit 0 only when all twelve variants meet theirs and nothing was INCONCLUSIVE; exit 3 when anything was INCONCLUSIVE; exit 1 when an observation differs; exit 2 when it could not run."
+}

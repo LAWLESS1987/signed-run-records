@@ -1,0 +1,20 @@
+## commands
+++ git clone -q https://gist.github.com/79d125f515a2a90556acbde557ae9c57.git packet
+++ git -C packet log -1 --format=%H
+4a694abf82ca88db554f9e367e2e971c2889b1c2
+++ sha256sum packet/run_packet.py packet/expected.json
+e9b42e77cadc5e16f6c0a20564a9a0f010f2b362105fbd4573d8a344cfb75017 *packet/run_packet.py
+8e2612a4c3470d2ede949c7ed1c471f609feb50bc7b710991e6dc5d7eb09f082 *packet/expected.json
+++ py -3 -m venv venv
+/usr/bin/bash: line 1: py: command not found
+++ venv/Scripts/python -m pip install -q flask cryptography
+/usr/bin/bash: line 1: venv/Scripts/python: No such file or directory
+++ venv/Scripts/python -m pip list
+++ grep -i -E '^(flask|werkzeug|cryptography) '
+++ git clone -q https://github.com/LAWLESS1987/covenant covenant
+++ cd packet
+++ ../venv/Scripts/python run_packet.py --covenant ../covenant --out ../out
+/usr/bin/bash: line 1: ../venv/Scripts/python: No such file or directory
+++ echo 'EXIT 127'
+EXIT 127
+++ set +x
